@@ -1,0 +1,21 @@
+.columnas {
+    display: flex;
+}
+
+.primera_columna {
+    flex: 33%;
+}
+
+.segunda_columna {
+    flex: 33%;
+}
+
+.tercera_columna {
+    flex: 33;
+}
+
+@media (max-width: 600px) {
+    .columnas {
+        flex-direction: column;
+    }
+}
