@@ -1,11 +1,19 @@
-numero_menor = None
-print("El mumero mas mas bajo a al comienzo es 0")
-for value in [74,91,42,21,19,25]:
-    if numero_menor is None:
-        numero_menor = value
-        print(numero_menor)
-    elif numero_menor > value:
-        numero_menor = value
-        print(numero_menor)
+def computepay(xh, xr):
+    if xh > 40:
+        regularpay = xh * xr
+        overtimepay = (xh - 40) * (xr * 0.5)
+        pay = regularpay + overtimepay
+        return pay
+    else:
+        normalpay = xh * xr
+        return normalpay
 
-print("el numero menor es:", numero_menor)
+
+hours = input("Enter Hours: ")
+rate = input("Enter Rate:")
+
+xh = float(hours)
+xr = float(rate)
+
+finalpay = computepay(xh, xr)
+print("Pay", finalpay)
