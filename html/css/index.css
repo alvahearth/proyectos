@@ -1,10 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: aquamarine;
+}
+
+p {
+    text-align: justify;
+    font-size: 2rem;
 }
 
 .titulos {
     flex: 100%;
     text-align: center;
+}
+
+.imagenes {
+    flex: 100%;
+}
+
+.cuerpo {
+    flex: 100%;
 }
 
 .cubito {
@@ -28,8 +45,19 @@ body {
     flex: 33;
 }
 
+@keyframes body {
+
+}
+
 @media (max-width: 600px) {
     .columnas {
         flex-direction: column;
     }
 }
+
+@media (max-width: 500px) {
+    .columnas {
+        flex-direction: column;
+    }
+}
+
