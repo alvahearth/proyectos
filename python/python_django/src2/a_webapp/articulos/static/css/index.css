@@ -1,0 +1,18 @@
+a{
+    padding: 10px;
+    text-decoration: none;
+    color: whitesmoke;
+}
+button{
+    margin-left: 160px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.object{
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin-top: 5px;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
