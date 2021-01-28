@@ -27,3 +27,15 @@ class Usuario:
         
         return [cursor.rowcount, self]
         
+    def verificar_usuario(self):
+        encriptado = hashlib.sha256()
+        encriptado.update(self.contraseña.encode("utf8"))
+
+        sql = "SELECT * FROM usuario WHERE rut = %s AND contraseña = %s"
+        info = (self.rut, encriptado.hexdigest())
+
+        cursor.execute(sql, info)
+
+        result = cursor.fetchone()
+
+        return result

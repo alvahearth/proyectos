@@ -13,4 +13,4 @@ if opcion == "1":
     haz_el.registrarse()
 
 elif opcion == "2":
-    pass
+    haz_el.identificarse()
