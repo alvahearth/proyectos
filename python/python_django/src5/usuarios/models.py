@@ -49,7 +49,7 @@ class CustomUser(AbstractUser):
         return f"Email {self.email}"
 
 class PerfilModel(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, blank=True)
     imagen = models.ImageField(default="default.png", upload_to="profile_pics/")
 
     def __str__(self):
