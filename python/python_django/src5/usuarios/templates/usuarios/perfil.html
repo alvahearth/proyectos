@@ -1,0 +1,14 @@
+{% extends 'usuarios/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <img src="{{ user.perfilmodel.imagen.url }}" alt="imagen">
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <p><a href="{% url 'logout' %}">Cerrar sesión|</a></p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

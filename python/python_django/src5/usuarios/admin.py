@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import CustomUser
+from .models import CustomUser, PerfilModel
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import ugettext_lazy as _
@@ -28,4 +28,6 @@ class UserAdmin(DjangoUserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'is_staff')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
+
+admin.site.register(PerfilModel)
 # Register your models here.
