@@ -1,0 +1,35 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+
+<body>
+    
+    {% block content %}
+
+    <section>
+        <div class="container">
+            <div class="row fondo-portada">
+                <div class="col-xs-12">
+                    <img id="portada" class="mx-auto d-block img-fluid" src="{% static 'images/banco.jpg' %}" alt="banco" width="700px" height="450px">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <p class="enunciado1">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut deleniti ducimus ipsum dolorem molestiae repellendus amet. Sapiente eos nesciunt doloremque.
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    {% for i in años %}
+                    <p class="enunciado2">
+                        {{ i }}
+                    </p>
+                    {% endfor %}
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <p class="enunciado3">safdasfsa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

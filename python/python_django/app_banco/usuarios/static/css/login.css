@@ -1,0 +1,21 @@
+header{
+    margin-top: 10px;
+    margin-bottom: 60px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 5px;
+    background-color: #014e74;
+    box-shadow: 2px 18px 18px grey;
+}
+
+.titulo{
+    margin-top: 2px;
+    color: whitesmoke;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: left;
+}
+
+
+footer{
+    margin-top: 90px;
+}

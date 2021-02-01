@@ -1,0 +1,39 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+    {% block d %}
+        <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+    {% endblock d %}
+
+
+<body>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <button class="btn btn-primary" type="submit" value="save">
+                            Enviar
+                        </button>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div>
+                        <img id="imagen_registro" class="rounded img-fluid mt-2" src="{% static 'images/imagen_registro.jpg' %}" alt="registro" style="width: 700px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}

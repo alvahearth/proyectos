@@ -1,0 +1,76 @@
+{% extends 'usuarios/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+    {% block s %}
+        <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+    {% endblock s %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 mt-2">
+            <div class="border">
+                <p>{{ user.email }}</p>
+                <p>{{ user.rut }}</p>
+                <p>{{ user.moverdinero.dinero }}</p>
+
+            </div>
+
+            <div class="barrita">
+                <p class="encabezado">Cuentas</p>
+            </div>
+
+            <div class="barrita-balance">
+                <p class="enc-balance">
+                        Balance
+                </p>
+                
+                <p class="balance">
+                        ${{ result }}
+                </p>
+            </div>
+
+            <div class="barrita">
+                <p class="encabezado">
+                    Acciones
+                </p>
+            </div>
+
+            <div class="barrita-acciones">
+                <p>
+                    <a href="{% url 'historial' id=user.id %}">Historial de transferencias</a>
+                </p>
+            </div>
+                <div class="barrita-acciones">
+                <p>
+                    <a href="{% url 'transferencia' %}">Transferir a terceros</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-1 mt-2">
+            <img src="{{ user.profile.imagen.url }}" alt="">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    {{ p_form|crispy }}
+                </fieldset>
+                <button type="submit">
+                    Enviar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-1">
+            <p></p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
