@@ -74,7 +74,7 @@ class Profile(models.Model):
 
 class Dinero(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    dinero = models.IntegerField(default=100)
+    dinero = models.IntegerField(default=500)
 
     def __str__(self):
         return f"Dinero pertenece a {self.user}"
@@ -82,6 +82,7 @@ class Dinero(models.Model):
 class MoverDinero(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     dinero = models.IntegerField(default=0)
+    fecha_de_movimiento = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"usario {self.user}"

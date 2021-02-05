@@ -1,4 +1,4 @@
-header{
+/*header{
     margin-top: 10px;
     margin-bottom: 60px;
     margin-left: 15px;
@@ -7,6 +7,7 @@ header{
     background-color: #014e74;
     box-shadow: 2px 18px 18px grey;
 }
+*/
 
 .titulo{
     margin-top: 2px;
@@ -41,6 +42,7 @@ footer{
 }
 
 .barrita-acciones{
+    text-align: center;
     margin-top: 8px;
     background-color: #045b87;
     color: whitesmoke;
@@ -64,16 +66,3 @@ footer{
     text-align: center;
 }
 
-.enc-balance{
-    float: left;
-    margin-left: 130px;
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-
-.balance{
-    text-align: right;    
-    font-size: 40px;
-    margin-right: 130px;
-    margin-bottom: 20px;
-}

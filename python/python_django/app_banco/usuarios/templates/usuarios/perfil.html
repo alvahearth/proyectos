@@ -4,9 +4,9 @@
 
 {% block content %}
 
-    {% block s %}
+    {% block h %}
         <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
-    {% endblock s %}
+    {% endblock h %}
 
 
 <div class="container">
@@ -15,7 +15,6 @@
             <div class="border">
                 <p>{{ user.email }}</p>
                 <p>{{ user.rut }}</p>
-                <p>{{ user.moverdinero.dinero }}</p>
 
             </div>
 
@@ -24,11 +23,11 @@
             </div>
 
             <div class="barrita-balance">
-                <p class="enc-balance">
+                <p class="enc-balance" style="text-align: center; margin-left: 70px;">
                         Balance
                 </p>
                 
-                <p class="balance">
+                <p class="balance" style="text-align: center; margin-left: 300px;">
                         ${{ user.dinero.dinero }}
                 </p>
             </div>
@@ -52,7 +51,7 @@
         </div>
 
         <div class="col-xs-12 col-md-1 mt-2">
-            <img src="{{ user.profile.imagen.url }}" alt="">
+            <img src="{{ user.profile.imagen.url }}" alt="Imagen" class="mx-auto d-block">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <fieldset>

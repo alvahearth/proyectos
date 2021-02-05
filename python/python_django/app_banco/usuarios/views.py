@@ -1,3 +1,5 @@
+from datetime import time
+import datetime
 from typing import List
 from django import forms
 from django.forms.widgets import Select
@@ -7,7 +9,10 @@ from .forms import NewUserForm, UpdatePerfil, MakeTransfer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import CustomUser, Dinero, MoverDinero
-
+from django.views.decorators.csrf import requires_csrf_token
+from django.utils import timezone
+import csv
+import os
 
 
 
@@ -54,6 +59,7 @@ class RegisterUser(View):
 class Profile(LoginRequiredMixin, View):
     template_name = "usuarios/perfil.html"
 
+    
     def get(self, request):
         p_form = UpdatePerfil(instance=request.user.profile)
         index = request.user.id
@@ -65,6 +71,7 @@ class Profile(LoginRequiredMixin, View):
 
         return render(request, self.template_name, context)
 
+    
     def post(self, request):
         p_form = UpdatePerfil(request.POST, request.FILES, instance=request.user.profile)
 
@@ -93,42 +100,76 @@ class Transaction(View):
         if d_form.is_valid():
             index = request.user.id
             dinero1 = request.user.dinero.dinero
-            print(dir(MakeTransfer(instance=request.user.moverdinero)))
             dinero2 = request.user.moverdinero.dinero
             
+            #timezone.UTC()
+            q = MoverDinero.objects.filter(id=index).update(fecha_de_movimiento=timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
+            q = MoverDinero.objects.filter(id=index).first()
+            hora = q.fecha_de_movimiento
             
             Dinero.objects.filter(id=index).update(dinero=(dinero1 - dinero2))
-            archi = ListaHistorial(historial_transferencias, dinero2, index)
+            #MoverDinero.objects.filter(id=index).update(fecha_de_movimiento=timezone.now)
+            
+            archi = ListaHistorial(list_of_user_transfers[index], dinero2, hora, index)
             archi.appendIndexOrValues()
             d_form.save()
             return redirect('perfil')
 
-
 class Historial(View):
     template_name = "usuarios/historial.html"
     
-
-    def get(self, request, id):
+    def get(self, request, id):        
+        
+        with open(f"lista_transferencias{id}.csv", newline="") as csv_file:
+            csv_f = csv.reader(csv_file)
+            
+            cosas = []
+            
+            for i in csv_f:
+                cosas.append((i[1], i[2]))
             
         context = {
-            'obj_list': historial_transferencias
+            'obj_list': cosas
         }
 
         return render(request, self.template_name, context)
 
-historial_transferencias = []
+list_of_user_transfers = [[] for i in range(1,120)]
+
 class ListaHistorial:
-    def __init__(self, lists ,value, id):
+    def __init__(self, lists ,value, hora, id):
         self.value = value
         self.id = id
+        self.hora = hora
         self.lists = lists
         
     def appendIndexOrValues(self):
         index = str(self.id)
         if len(self.lists) < 1:
             self.lists.append(index)
-            self.lists.append(self.value)
+            self.lists.append((self.value, self.hora))
+            
+            csv_file_number = self.id
+            header = ["id", "Transferido", "Hora"]
+            data = [self.id ,self.value ,self.hora]
+                    
+            with open(f"lista_transferencias{csv_file_number}.csv", mode="w", newline="") as transfer_file:
+
+                transfer_write = csv.writer(transfer_file)
+                        
+                transfer_write.writerow(header)
+                transfer_write.writerow(data)
         else:
-            self.lists.append(self.value)
+            self.lists.append((self.value, self.hora))
+            
+            for i in range(1,120):
+                if i == len(self.lists):
+                    data = [self.id ,self.value ,self.hora]
+                    
+                    with open(f"lista_transferencias{self.id}.csv", mode="a+", newline="") as transfer_file:
+                        transfer_write = csv.writer(transfer_file)
+                        
+                        transfer_write.writerow(data)
             
         return self.lists
+    
