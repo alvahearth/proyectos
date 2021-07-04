@@ -1,0 +1,67 @@
+Trabajadores
+El consumo del 2021 es de: 20.0
+El consumo del 2022-2023 será de: 21.0
+5.0
+
+Horas/mes
+El consumo del 2021 es de: 170.0
+El consumo del 2022-2023 será de: 193.71
+13.95
+
+Activos fisicos
+El consumo del 2021 es de: 400000000.0
+El consumo del 2022-2023 será de: 520000000.0
+30.0
+
+Remuneracion/mes
+El consumo del 2021 es de: 500000.0
+El consumo del 2022-2023 será de: 525000.0
+5.0
+
+Unidades/mes
+El consumo del 2021 es de: 350000.0
+El consumo del 2022-2023 será de: 437500.0
+25.0
+
+precio venta
+El consumo del 2021 es de: 80.0
+El consumo del 2022-2023 será de: 84.0
+5.0
+
+Insumos mes
+El consumo del 2021 es de: 50000.0
+El consumo del 2022-2023 será de: 60000.0
+20.0
+
+precio insumo
+El consumo del 2021 es de: 80.0
+El consumo del 2022-2023 será de: 68.0
+-15.0
+
+Gastos operacionales
+El consumo del 2021 es de: 4000000.0
+El consumo del 2022-2023 será de: 4200000.0
+5.0
+
+Período 2021
+el Valor agregado es 24000000.0
+la utilidad es de 10000000.0
+el roi es de 0.025
+el pft es de 1200000.0
+el pfc es de 0.06
+el pf es de 2058.823529411765
+el pe es de 141176.4705882353
+la intensidad de capital es de 2352941.1764705884
+la utilizacion de activos es de 0.07
+
+Período 2023
+el Valor agregado es 32670000.0
+la utilidad es de 17445000.0
+el roi es de 0.033548076923076924
+el pft es de 1555714.2857142857
+el pfc es de 0.06282692307692307
+el pf es de 2258.5307934541324
+el pe es de 168654.1737649063
+la intensidad de capital es de 2684425.1716483403
+la utilizacion de activos es de 0.07067307692307692
+
