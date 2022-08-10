@@ -1,0 +1,109 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<br>
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message  }}
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="w3-card-4 w3-margin" style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+                <div class="w3-container">
+                    <br>
+                    <h1 style="text-align: center;">
+                        Te damos la bienvendia a nuestra familia
+                    </h1>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% else %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="w3-card-4 w3-margin" style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+            <div class="w3-container">
+                <br>
+                <h1 style="text-align: center;">
+                    Te echabamos de menos
+                </h1>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+
+
+
+<div class="row">
+
+    <div class="col-xs-12 col-md-1">
+
+    </div>
+
+    <div class="col-xs-12 col-md-5">
+
+        {% block formulario %}
+        <div class="w3-card-4 w3-margin" style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+            <div class="w3-container">
+                <br>
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <p class="mt-1"><a href="{% url 'password_reset' %}"
+                            style="text-decoration: none; color: teal;">Olvidaste tu contraseña?</a>
+                    </p>
+                    <button class="btn btn-success mt-3 d-block mx-auto">
+                        Ingresar
+                    </button>
+                </form>
+            </div>
+            <hr>
+        </div>
+        {% endblock formulario %}
+    </div>
+
+
+
+    <div class="col-xs-12 col-md-5">
+        <div class="w3-card-4 w3-padding w3-margin" style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+            <p style="font-size: 1.8rem;">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus accusamus eius dolor quia blanditiis itaque maxime culpa ipsam aut tenetur. Reiciendis harum officiis debitis sequi blanditiis unde illo odio rem?  
+            </p>
+            
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-1">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <!-- Blog entry -->
+        <div class="w3-card-4 w3-margin" style="background-color: rgba(23, 55, 83, 0.9);">
+            <div class="w3-container">
+                <br>
+                <img src="{% static 'images/foto1_c.jpg' %}" alt="Nature" style="width:100%">
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

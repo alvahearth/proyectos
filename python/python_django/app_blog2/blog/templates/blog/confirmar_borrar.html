@@ -1,0 +1,43 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="w3-card-4 w3-margin" style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+            <div class="w3-container">
+                <br>
+                <h1 style="text-align: center;">
+                    {{ obj.title }}
+                </h1>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="w3-card-4 w3-padding w3-margin">
+
+            <form method="POST" class="w3-center">
+                {% csrf_token %}
+                <fieldset style="color: white;">
+                    <b class="mt-2">
+                        ¿Estás seguro en borrar el post {{ obj.title }} y todo su contenido?
+                    </b>
+                </fieldset>
+                <br>
+                <button type="submit" class="btn btn-danger" style="margin-left: 20px; margin-right: 40px;"> Si, Adelante</button>
+                <button class="btn btn-primary">
+                    <a href="{% url 'perfil' %}" style="color: white; text-decoration: none;">
+                        no, devuelveme a mi perfil
+                    </a>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,52 @@
+.info{
+    float: left;
+}
+
+.img-info{
+    float: right;
+}
+
+.mi-info{
+    border-radius: 10px;
+    border: 1px solid black;
+    padding-block-end: 120px;
+    box-shadow: 10px 3px 20px gray;
+}
+
+.mis-articulos{
+    padding: 5px;
+    box-shadow: 10px 3px 20px gray;
+}
+
+.mis-articulos > p{
+    text-align: center;
+}
+
+.mis-articulos p a{
+    text-decoration: none;
+    color: black;
+}
+
+.mis-articulos p:hover{
+    background: #59b5ba;
+    color: white;
+    transition: 500ms;
+}
+
+#nuevo > a{
+    text-decoration: none;
+    color: black;
+}
+
+#nuevo > a:hover{
+    color: white;
+}
+
+#actu > a{
+    text-decoration: none;
+    color: black;
+}
+
+#actu > a:hover{
+    color: white;
+}

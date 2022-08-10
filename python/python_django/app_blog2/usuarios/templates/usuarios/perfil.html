@@ -1,0 +1,230 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+{% block w %}
+<link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+{% endblock w %}
+
+<div class="container mt-4">
+
+    <div class="row">
+        <div class="col-xs-12 col-md-2">
+
+        </div>
+
+        <div class="col-xs-12 col-md-8">
+            <div class="w3-card-4 w3-padding w3-margin w3-round-medium"
+                style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+                <div class="w3-container">
+
+                    <div class="w3-center">
+                        <h3>Mi perfil</h3>
+                    </div>
+                    <br>
+                    <div class="pull-left mt-4">
+                        <h4><strong>Usuario</strong>: {{ user.username }}</h4>
+                        <h4><strong>Correo</strong>: {{ user.email }}</h4>
+                        {% if user.first_name == "" %}
+                        <h4>No tiene nombre registrado</h4>
+                        {% else %}
+                        <h4><strong>Nombre</strong>: {{ user.first_name }} {{ user.last_name }}</h4>
+                        {% endif %}
+                    </div>
+
+                    <div class="pull-right">
+                        <div class="d-block mx-auto">
+                            <img style="margin-right: 20px; width: 150px; height: 150px;" src="{{ user.perfildelusuario.image.url }}" alt="perfil">
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <button id="actu" type="submit" class="btn btn-primary d-block mx-auto">
+                    <a href="{% url 'act_perfil' %}">
+                        Actualizar
+                    </a>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Sección mis articulos -->
+<div class="w3-row">
+
+    <div class="w3-col l8 s12">
+
+        <section>
+            <div class="w3-card-4 w3-margin w3-padding w3-wide w3-round-medium"
+                style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+                <p style="text-align: center; font-size: 40px;">Mis articulos</p>
+            </div>
+            <div class="w3-card-4 w3-center w3-padding w3-round-medium"
+                style="margin-left: 50px; margin-right: 50px; background-color: rgba(23, 55, 83, 0.7); color: white;">
+
+                {% for i in obj_list %}
+                <div class="w3-container w3-border w3-margin w3-round-medium w3-padding" style="float: left;">
+                    <h2>{{ i.title|truncatechars:20 }}</h2>
+                    <p>Creado el: {{i.created_at}}</p>
+                    <p>actualizado el: {{ i.updated_at|date:'DATETIME_FORMAT' }} &nbsp;</p>
+                    <div class="w3-dropdown-hover w3-right">
+                        <button class="w3-button w3-hover-indigo with w3-hover-opacity"
+                            style="background-color: rgba(23, 55, 83, 1);">Administrar</button>
+                        <div class="w3-dropdown-content w3-bar-block w3-border"
+                            style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+                            <a href="{% url 'detalle' id=i.id %}"
+                                class="w3-bar-item w3-button w3-hover-indigo with w3-hover-opacity">Ver
+                            </a>
+                            <a href="{% url 'articulo_edit' id=i.id %}"
+                                class="w3-bar-item w3-button w3-hover-indigo with w3-hover-opacity">Editar</a>
+                            <a href="{% url 'borrar' id=i.id %}"
+                                class="w3-bar-item w3-button w3-hover-indigo with w3-hover-opacity">Borrar</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+
+                <div class="w3-container w3-border w3-margin w3-round-medium w3-padding">
+                    <h2>Todavía no tienes ningún artículo publicado</h2>
+
+                </div>
+
+
+                {% endfor %}
+
+                <button id="nuevo" type="button" class="btn btn-primary w-100 btn-block mx-auto d-block">
+                    <a href="{% url 'nuevo' %}">
+                        Nuevo Articulo
+                    </a>
+                </button>
+
+
+
+
+                <!--  Paginador de mis artículos -->
+                <div class="w3-center mt-2">
+                    {% if obj_list.has_previous %}
+                    <button class="w3-button w3-black w3-padding-large w3-margin-bottom">
+                        <a href="?page=1" style="text-decoration: none; color: white;">
+                            Inicio
+                        </a>
+                    </button>
+                    <button class="w3-button w3-black w3-padding-large w3-margin-bottom">
+                        <a href="?page={{ obj_list.previous_page_number }}"
+                            style="text-decoration: none; color: white;">
+                            Anterior
+                        </a>
+                    </button>
+                    {% else %}
+                    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Inicio</button>
+                    {% endif %}
+
+                    {% for i in obj_list.paginator.page_range %}
+                    {% if obj_list.number == i %}
+                    <button class="w3-button w3-black w3-padding-large w3-margin-bottom"
+                        style="text-decoration: none;color:white">
+                        <b>
+                            {{ i }}
+                        </b>
+                    </button>
+                    {% elif i > obj_list.number|add:'-3' and i < obj_list.number|add:'3' %} <button
+                        class="w3-button w3-black w3-padding-large w3-margin-bottom">
+                        <a href="?page={{i}}" style="text-decoration: none; color: white;">
+                            {{ i }}
+                        </a>
+                        </button>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if obj_list.has_next %}
+                        <button class="w3-button w3-black w3-padding-large w3-margin-bottom">
+                            <a href="?page={{ obj_list.next_page_number }}"
+                                style="text-decoration: none; color: white;">
+                                Siguiente
+                            </a>
+                        </button>
+                        <button class="w3-button w3-black w3-padding-large w3-margin-bottom">
+                            <a href="?page={{ obj_list.paginator.num_pages }}"
+                                style="text-decoration: none; color: white;">
+                                Última
+                            </a>
+                        </button>
+                        {% else %}
+                        <button
+                            class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Siguiente</button>
+                        <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Última</button>
+                        {% endif %}
+
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+    <!-- Fin paginador de mis artículos -->
+
+    <!-- Sobre mí -->
+    <div class="w3-col l4">
+        <div class="w3-card w3-margin w3-margin-top">
+            <div class="w3-container" style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+                <br>
+                <h4><b>Sobre mí en 40 letras o menos</b></h4>
+                {% if user.perfildelususario.about_me %}
+                <p>{{ user.perfildelusuario.about_me }}</p>
+                {% else %}
+                <p>Cuentanos sobre tí, haz en click en actualizar en tu perfil para empezar a conocerte</p>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+        <!-- Fin sobre mí -->
+
+        <!-- Mis comentarios -->
+        <div class="w3-card w3-margin">
+            <div class="w3-container w3-padding" style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+                <h4>Últimos comentarios</h4>
+            </div>
+            {% for comment in com_list %}
+
+            {% if forloop.counter > 5 %}
+            <!-- Nada -->
+            {% else %}
+            <ul class="w3-ul w3-hover-indigo with w3-hover-opacity"
+                style="background-color: rgb(50, 78, 103); color: white;">
+                <li class="w3-padding-16">
+                    <a href="{% url 'detalle' id=comment.articulo.id %}">
+                        <img src={{ comment.articulo.image.url }} alt="Image" class="w3-left w3-margin-right"
+                            style="width:50px">
+                    </a>
+                    <span class="w3-large">
+                        <a href="{% url 'detalle' id=comment.articulo.id %}"
+                            style="text-decoration: none; color: white;">
+                            {{ comment.body|truncatechars:35 }}
+                        </a>
+                    </span>
+                    <br>
+                    <span>{{ comment.date_added }}</span>S
+                </li>
+            </ul>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+        <hr>
+    </div>
+
+    <!-- END GRID -->
+</div>
+<br>
+
+
+
+{% endblock content %}

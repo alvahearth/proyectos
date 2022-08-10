@@ -1,0 +1,92 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 mt-2 w3-center">
+            <h1 style="color: white;"><b>{{ obj.title }}</b></h1>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-xs-12 col-md-6">
+            <br>
+            <div class="w3-card-4 w3-margin w3-white">
+                <img src="{{ obj.image.url }}" alt="{{ obj.image }}" style="width:100%">
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+
+            <div class="w3-card-4 w3-margin w3-padding w3-round-xlarge"
+                style="background-color: rgba(23, 55, 83, 0.9); color: white;">
+                <div class="w3-container">
+                    <h5>Tegnologia </h5>
+                    <h5>Creado: <span class="w3-opacity">{{ obj.created_at|date }}</span></h5> 
+                </div>
+
+                <div class="w3-container">
+                    <p>{{ obj.content }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 style="text-align: center; color: white;">Comentarios</h1>
+        </div>
+    </div>
+    <hr>
+    {% block comments %}
+    <div class="row">
+
+
+        <div class="col-xs-12 col-md-8">
+            <div class="w3-card-2 w3-padding mt-2 mb-2" style="background-color: rgba(23, 55, 83, 0.2);">
+
+                {% if not obj.comments.all %}
+                <p style="color: white; text-align: center;">No hay comentarios</p>
+                {% else %}
+                {% for comment in obj.comments.all reversed %}
+                <div id="comments" class="w3-margin w3-padding" style="background-color: rgba(23, 55, 83, 0.4);">
+                    <p style="font-size: 2rem; background-color: rgba(23, 55, 83, 0.7); color: white; text-decoration: underline; text-align: start;">{{ comment.name }}</p>
+                    <p style="color: white; text-align: end;">{{ comment.date_added }}</p>
+                    <p style="background-color:rgba(23, 55, 83, 0.1); color: white;">{{ comment.body }}</p>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <!--<div class="w3-white w3-padding mb-3">-->
+                    <p style="text-align: center;" class="mt-2">
+                        <button type="button" class="btn btn-primary btn-block">
+                            <a href="{% url 'comentario' obj.id %}" style="text-decoration: none; color: white;">Nuevo
+                                comentario</a>
+                            </button>
+                        </p>
+                    <!--</div>-->
+                
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+            <img class="rounded mt-2 mb-2 d-block mx-auto" src="{% static 'images/comentarios.jpg' %}" alt="portada"
+                style="width: 400px;">
+        </div>
+    </div>
+
+    {% endblock comments %}
+    <br>
+    <br>
+</div>
+
+{% endblock content %}
