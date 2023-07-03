@@ -25,9 +25,9 @@ my_games = [
     },
 ]
 
-mi_archivo1 = ruta + "\\folder2\my_texto.txt"
-mi_archivo2 = ruta + "\\folder2\my_texto.html"
-mi_archivo3 = ruta + "\\folder2\my_texto.py"
+mi_archivo1 = ruta + "\\folder2/my_texto.txt"
+mi_archivo2 = ruta + "\\folder2/my_texto.html"
+mi_archivo3 = ruta + "\\folder2/my_texto.py"
 
 print(mi_archivo1)
 

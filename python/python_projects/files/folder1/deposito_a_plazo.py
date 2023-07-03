@@ -1,5 +1,3 @@
-import math
-
 def deposito(monto,fondo,meses):
     ganancias = 0
     if fondo == 1:
