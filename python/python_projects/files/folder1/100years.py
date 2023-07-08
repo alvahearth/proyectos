@@ -1,7 +1,19 @@
-user_name = str(input("Enter your name: "))
-user_age = int(input("Enter your age: "))
-current_year = 2020
+def primes(n: int):
+    sieve = [True] * n
 
-resultado = (abs(user_age - 100)) + current_year
+    res = []
 
-print(user_name + " " + "Tendrás 100 años en el año:" , resultado)
+    for i in range(2, n):
+        if sieve[i]:
+            res.append(i)
+            for j in range(i * i, n, i):
+                sieve[j] = False
+
+    return res
+
+
+xs = primes(100)
+ys = print("s")
+print(xs)
+
+s = 5

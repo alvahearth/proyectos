@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -15,6 +16,7 @@ int comparison(const char *string1,const char *string2);
 int calculateWin(int, int);
 int Win(int x);
 int Loss(int x);
+
 
 int main()
 {
@@ -157,6 +159,7 @@ int comparison(const char *string1,const char *string2)
             return 1;
         }  
     }
+    return 1;
 }
 
 int calculateWin(int x, int y)
@@ -185,6 +188,7 @@ int calculateWin(int x, int y)
         }
         
     }
+  return 1;
 }
 
 int Win(int x)
